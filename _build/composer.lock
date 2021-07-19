@@ -1,0 +1,93 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "1da6300e285cc82207dfda0851ba3684",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "modx/revolution",
+            "version": "v2.8.3-pl",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/modxcms/revolution.git",
+                "reference": "9f34bc936bcfa604d462a3f8b8fa3a36586b4395"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/modxcms/revolution/zipball/9f34bc936bcfa604d462a3f8b8fa3a36586b4395",
+                "reference": "9f34bc936bcfa604d462a3f8b8fa3a36586b4395",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "~2.1",
+                "phpunit/phpunit": "~5.7|~6.5"
+            },
+            "type": "project",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Jason Coward",
+                    "email": "jason@opengeek.com",
+                    "homepage": "http://jasoncoward.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Shaun McCormick",
+                    "email": "splittingred@gmail.com",
+                    "homepage": "http://splittingred.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jan Peca",
+                    "email": "pecajan@gmail.com",
+                    "homepage": "http://www.bxr.cz/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "MODX Revolution is a Content Management System",
+            "homepage": "https://modx.com/",
+            "keywords": [
+                "cms",
+                "content",
+                "routing",
+                "templating"
+            ],
+            "support": {
+                "chat": "https://modx.org/",
+                "docs": "https://docs.modx.com/",
+                "email": "help@modx.com",
+                "forum": "https://community.modx.com/",
+                "irc": "irc://irc.freenode.org/modx",
+                "issues": "https://github.com/modxcms/revolution/issues/",
+                "source": "https://github.com/modxcms/revolution/"
+            },
+            "time": "2021-05-28T14:54:39+00:00"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.4",
+        "ext-pdo": "*",
+        "ext-curl": "*",
+        "ext-simplexml": "*",
+        "ext-json": "*",
+        "ext-xmlwriter": "*",
+        "ext-bcmath": "*",
+        "ext-openssl": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}

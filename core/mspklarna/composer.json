@@ -1,0 +1,28 @@
+{
+  "name": "alroniks/mspklarna-model",
+  "description": "Model package of mspKlarna component",
+  "type": "metapackage",
+  "require": {
+    "guzzlehttp/guzzle": "^7.2",
+    "fig/http-message-util": "^1.1",
+    "lmc/http-constants": "^1.2",
+    "spatie/data-transfer-object": "^2.8",
+    "league/uri": "^6.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  },
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ivan Klimchuk",
+      "email": "ivan@klimchuk.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "alroniks\\mspklarna\\": ""
+    }
+  }
+}

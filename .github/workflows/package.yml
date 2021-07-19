@@ -1,0 +1,36 @@
+name: Automatic Build
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    name: Building Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Builder Dependensies
+        uses: php-actions/composer@v5
+        with:
+          args: -d _build --ignore-platform-reqs
+
+      - name: Install Core Dependensies
+        uses: php-actions/composer@v5
+        with:
+          args: -d core/mspklarna --ignore-platform-reqs
+
+      - name: Build Package
+        run: php _build/build.transport.php release ${{ secrets.modstore_token }}
+
+      - name: Upload Assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.github_token }}
+          file_glob: true
+          overwrite: true
+          tag: ${{ github.ref }}
+          file: _packages/*.zip

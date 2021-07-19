@@ -1,4 +1,4 @@
-# [0.3.0](https://github.com/alroniks/mspKlarna/compare/v0.1.0...v0.3.0) (2021-07-19)
+# [0.2.0](https://github.com/alroniks/mspKlarna/compare/v0.1.0...v0.2.0) (2021-07-19)
 
 
 ### Features

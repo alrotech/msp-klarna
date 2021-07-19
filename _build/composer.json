@@ -1,33 +1,33 @@
 {
-    "name": "alroniks/mspklarna",
-    "description": "Payment provider for MODX miniShop2 e-commerce solutions based on Klarna gateway.",
-    "type": "metapackage",
-    "version": "0.1.0",
-    "license": "proprietary",
-    "authors": [
-        {
-            "name": "Ivan Klimchuk",
-            "email": "ivan@klimchuk.com"
-        }
-    ],
-    "autoload": {
-        "files": [
-            "../core/mspklarna/helpers/xml.php"
-        ]
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require-dev": {
-        "modx/revolution": "~2.0"
-    },
-    "require": {
-        "php": ">=7.4",
-        "ext-pdo": "*",
-        "ext-curl": "*",
-        "ext-simplexml": "*",
-        "ext-json": "*",
-        "ext-xmlwriter": "*",
-        "ext-bcmath": "*",
-        "ext-openssl": "*"
+  "name": "alroniks/mspklarna",
+  "description": "Payment provider for MODX miniShop2 e-commerce solutions based on Klarna gateway.",
+  "type": "metapackage",
+  "version": "0.1.0",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ivan Klimchuk",
+      "email": "ivan@klimchuk.com"
     }
+  ],
+  "autoload": {
+    "files": [
+      "../core/mspklarna/helpers/xml.php"
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "modx/revolution": "~2.0"
+  },
+  "require": {
+    "php": ">=7.4",
+    "ext-pdo": "*",
+    "ext-curl": "*",
+    "ext-simplexml": "*",
+    "ext-json": "*",
+    "ext-xmlwriter": "*",
+    "ext-bcmath": "*",
+    "ext-openssl": "*"
+  }
 }

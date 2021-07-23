@@ -11,32 +11,27 @@ declare(strict_types = 1);
 
 require __DIR__ . '/../../core/mspklarna/KlarnaGatewayInterface.php';
 
-use alroniks\mspklarna\KlarnaGatewayInterface;
+use alroniks\mspklarna\KlarnaGatewayInterface as Klarna;
 
 $list = [
-    KlarnaGatewayInterface::AREA_CREDENTIALS => [
-        KlarnaGatewayInterface::OPTION_CASH_REGISTER_NUMBER => ['xtype' => 'textfield', 'value' => ''],
-        KlarnaGatewayInterface::OPTION_CASH_PASSWORD => ['xtype' => 'text-password', 'value' => ''],
+    Klarna::AREA_CREDENTIALS => [
+        Klarna::OPTION_USERNAME => ['xtype' => 'textfield', 'value' => 'PK42065_b861dfe97ec6'],
+        Klarna::OPTION_PASSWORD => ['xtype' => 'text-password', 'value' => '2KFZjGO1uMpaLTzN'],
     ],
-    KlarnaGatewayInterface::AREA_GATEWAYS => [
-        KlarnaGatewayInterface::OPTION_GATEWAY_URL => ['xtype' => 'textfield', 'value' => 'https://cashboxapi.o-plati.by/ms-pay/'],
-        KlarnaGatewayInterface::OPTION_GATEWAY_URL_TEST => ['xtype' => 'textfield', 'value' => 'https://bpay-testcashdesk.lwo.by/ms-pay/'],
-        KlarnaGatewayInterface::OPTION_DEVELOPER_MODE => ['xtype' => 'combo-boolean', 'value' => true],
+    Klarna::AREA_GATEWAYS => [
+//        Klarna::OPTION_GATEWAY_REGION => ['xtype' => 'klarna-combo-region', 'value' => ''],
+        Klarna::OPTION_GATEWAY_REGION => ['xtype' => 'textfield', 'value' => ''],
+        Klarna::OPTION_GATEWAY_URL => ['xtype' => 'textfield', 'value' => 'https://api<region>.klarna.com'],
+        Klarna::OPTION_GATEWAY_URL_TEST => ['xtype' => 'textfield', 'value' => 'https://api<region>.playground.klarna.com'],
+        Klarna::OPTION_DEVELOPER_MODE => ['xtype' => 'combo-boolean', 'value' => true],
     ],
-    KlarnaGatewayInterface::AREA_RECEIPT => [
-        KlarnaGatewayInterface::OPTION_TITLE_TEXT => ['xtype' => 'textfield', 'value' => ''],
-        KlarnaGatewayInterface::OPTION_HEADER_TEXT => ['xtype' => 'textfield', 'value' => ''],
-        KlarnaGatewayInterface::OPTION_FOOTER_TEXT => ['xtype' => 'textfield', 'value' => ''],
-        KlarnaGatewayInterface::OPTION_PRINT_CASH_REGISTER_NUMBER => ['xtype' => 'combo-boolean', 'value' => false],
+    Klarna::AREA_STATUSES => [
+        Klarna::OPTION_SUCCESS_STATUS => ['xtype' => 'mspp-combo-status', 'value' => 2],
+        Klarna::OPTION_FAILURE_STATUS => ['xtype' => 'mspp-combo-status', 'value' => 4],
     ],
-    KlarnaGatewayInterface::AREA_STATUSES => [
-        KlarnaGatewayInterface::OPTION_SUCCESS_STATUS => ['xtype' => 'mspp-combo-status', 'value' => 2],
-        KlarnaGatewayInterface::OPTION_FAILURE_STATUS => ['xtype' => 'mspp-combo-status', 'value' => 4],
-    ],
-    KlarnaGatewayInterface::AREA_PAGES => [
-        KlarnaGatewayInterface::OPTION_SUCCESS_PAGE => ['xtype' => 'mspp-combo-resource', 'value' => 0],
-        KlarnaGatewayInterface::OPTION_FAILURE_PAGE => ['xtype' => 'mspp-combo-resource', 'value' => 0],
-        KlarnaGatewayInterface::OPTION_UNPAID_PAGE => ['xtype' => 'mspp-combo-resource', 'value' => 0],
+    Klarna::AREA_PAGES => [
+        Klarna::OPTION_SUCCESS_PAGE => ['xtype' => 'mspp-combo-resource', 'value' => 0],
+        Klarna::OPTION_FAILURE_PAGE => ['xtype' => 'mspp-combo-resource', 'value' => 0],
     ]
 ];
 
@@ -45,8 +40,8 @@ foreach ($list as $area => $set) {
     foreach ($set as $key => $config) {
         $setting = $xpdo->newObject(modSystemSetting::class);
         $setting->fromArray(array_merge([
-            'key' =>  'oplati_' . $key,
-            'area' => 'oplati_' . $area,
+            'key' =>  'klarna_' . $key,
+            'area' => 'klarna_' . $area,
             'namespace' => PKG_NAME_LOWER,
         ], $config), '', true, true);
 

@@ -18,6 +18,8 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
     case xPDOTransport::ACTION_INSTALL:
     case xPDOTransport::ACTION_UPGRADE:
 
+        $transport->xpdo->addExtensionPackage('klarna', '[[++core_path]]components/mspklarna/services/');
+
         /** @var miniShop2 $shop */
         if ($shop = $transport->xpdo->getService('miniShop2')) {
             $shop->addService('payment', KlarnaHandler::class, '{core_path}components/mspklarna/KlarnaHandler.class.php');
@@ -26,6 +28,8 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         break;
 
     case xPDOTransport::ACTION_UNINSTALL:
+
+        $transport->xpdo->removeExtensionPackage('klarna');
 
         /** @var miniShop2 $shop */
         if ($shop = $transport->xpdo->getService('miniShop2')) {

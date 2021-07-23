@@ -10,8 +10,8 @@ declare(strict_types = 1);
 
 require_once __DIR__ . '/helpers/xml.php';
 
-use function alroniks\mspoplati\helpers\xml\xmlToArray;
-use function alroniks\mspoplati\helpers\xml\arrayToXml;
+use function alroniks\mspklarna\helpers\xml\xmlToArray;
+use function alroniks\mspklarna\helpers\xml\arrayToXml;
 
 /**
  * Class EncryptedVehicle

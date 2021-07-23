@@ -7,7 +7,7 @@
 
 declare(strict_types = 1);
 
-namespace alroniks\mspoplati\helpers\xml;
+namespace alroniks\mspklarna\helpers\xml;
 
 use JsonException;
 use XMLWriter;

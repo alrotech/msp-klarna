@@ -23,7 +23,7 @@ class KlarnaHandler extends ConfigurablePaymentHandler implements KlarnaGatewayI
 {
     public static function getPrefix(): string
     {
-        return 'oplati';
+        return 'klarna';
     }
 
     /**
@@ -48,11 +48,51 @@ class KlarnaHandler extends ConfigurablePaymentHandler implements KlarnaGatewayI
 
         $this->config = $this->getProperties($payment);
 
-        return $this->modx->makeUrl(
-            $this->config[self::OPTION_UNPAID_PAGE],
-            $this->modx->context->get('key'),
-            modX::toQueryString(['msorder' => $order->get('id')]),
-            'full'
-        );
+        /** @var KlarnaService $service */
+        $service = $this->modx->getService('klarna', KlarnaService::class);
+
+        $res = $service->requestPayment($order);
+
+        $arr = $this->modx->fromJSON($res);
+
+        echo $arr['session_id'];
+
+        $answ = $service->requestRedirect($arr['session_id']);
+        $aw = $answ->getBody()->getContents();
+
+        print_r($aw);
+
+        die();
+
+        // - get gateway links
+        //
+
+//        {
+//            "purchase_country": "GB",
+//  "purchase_currency": "GBP",
+//  "locale": "en-GB",
+//  "order_amount": 10,
+//  "order_tax_amount": 0,
+//  "order_lines": [{
+//            "type": "physical",
+//    "reference": "19-402",
+//    "name": "Battery Power Pack",
+//    "quantity": 1,
+//    "unit_price": 10,
+//    "tax_rate": 0,
+//    "total_amount": 10,
+//    "total_discount_amount": 0,
+//    "total_tax_amount": 0,
+//    "image_url": "https://www.exampleobjects.com/logo.png",
+//    "product_url": "https://www.estore.com/products/f2a8d7e34"
+//  }]
+//}
+        return '';
+//        return $this->modx->makeUrl(
+//            $this->config[self::OPTION_UNPAID_PAGE],
+//            $this->modx->context->get('key'),
+//            modX::toQueryString(['msorder' => $order->get('id')]),
+//            'full'
+//        );
     }
 }

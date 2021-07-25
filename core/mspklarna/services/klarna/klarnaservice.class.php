@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection AutoloadingIssuesInspection */
 /**
  * Copyright (c) Ivan Klimchuk - All Rights Reserved
  * Unauthorized copying, changing, distributing this file, via any medium, is strictly prohibited.
@@ -7,11 +7,15 @@
 
 declare(strict_types = 1);
 
+use alroniks\mspklarna\dto\merchant\MerchantSession;
+use alroniks\mspklarna\dto\Session;
 use alroniks\mspklarna\KlarnaGatewayInterface as Klarna;
 use Fig\Http\Message\RequestMethodInterface;
 use GuzzleHttp\Client;
 use League\Uri\Uri;
 use League\Uri\UriTemplate;
+use Psr\Http\Message\ResponseInterface;
+use Spatie\DataTransferObject\DataTransferObject;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -26,20 +30,69 @@ class KlarnaService
     public function __construct(modX $modx, array $config = [])
     {
         $this->modx = $modx;
+
         $this->config = $config;
 
-        /** @var miniShop2 $ms */
+        /** @var miniShop2 $service */
         $service = $this->modx->getService('minishop2');
         $this->engine = $service;
 
         $this->modx->lexicon->load('mspklarna:default');
     }
 
-    public function requestRedirect(string $sid)
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getHostedPaymentPage(msOrder $order): string
     {
+        $this->setUpConfig($order);
+
+        print_r($order->toArray());
+
+        // MerchantSession
+
+//                    'order_lines' => [
+//        [
+//            'name' => 'Некий товар',
+//            'quantity' => 2,
+//            'total_amount' => 1000,
+//            'unit_price' => 500,
+//        ]
+//    ]
+
+        $session = Session::createFromOrder($order, $this->config);
+
+        // debug, avoid one value var
+        print_r($session);
+
+        $paymentSession = $this->createPaymentSession($session);
+
+        print_r($paymentSession);
+
+        die();
+
+        $answ = $this->createHostedPageSession($paymentSession);
+
+
+
+        //        $arr = $this->modx->fromJSON($res);
+//
+//        echo $arr['session_id'];
+//
+//        $answ = $service->requestRedirect($arr['session_id']);
+//        $aw = $answ->getBody()->getContents();
+//
+//        print_r($aw);
+
+    }
+
+    // SessionRequest//
+    protected function createHostedPageSession(MerchantSession $session)
+    {
+        $response = $this->makeRequest('/hpp/v1/sessions', $session);
 
         $uri = Uri::createFromBaseUri(
-            (new UriTemplate('/payments/v1/sessions/{kp_session_id}'))->expand(['kp_session_id' => $sid]),
+            (new UriTemplate('/payments/v1/sessions/{kp_session_id}'))->expand(['kp_session_id' => $session]),
             $this->config[Klarna::OPTION_GATEWAY_URL]
         );
 
@@ -70,38 +123,11 @@ class KlarnaService
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function requestPayment(msOrder $order)
+    protected function createPaymentSession(Session $session): MerchantSession
     {
-        $this->setUpConfig($order);
+        $response = $this->makeRequest('/payments/v1/sessions', $session);
 
-        $response = $this->getClient()->request(
-            RequestMethodInterface::METHOD_POST,
-            '/payments/v1/sessions',
-            [
-                'auth' => [
-                    $this->config[Klarna::OPTION_USERNAME],
-                    $this->config[Klarna::OPTION_PASSWORD],
-                ],
-                // todo: dto
-                'json' => [
-                    'purchase_country' => 'GB',
-                    'purchase_currency' => 'GBP',
-                    'locale' => 'en-GB',
-                    'order_amount' => 1000,
-                    'order_tax_amount' => 0,
-                    'order_lines' => [
-                        [
-                            'name' => 'Некий товар',
-                            'quantity' => 2,
-                            'total_amount' => 1000,
-                            'unit_price' => 500,
-                        ]
-                    ]
-                ]
-            ]
-        );
-
-        return $response->getBody()->getContents();
+        return new MerchantSession($this->modx->fromJSON($response->getBody()->getContents()));
     }
 
     protected function setUpConfig(msOrder $order): void
@@ -127,5 +153,23 @@ class KlarnaService
     protected function getClient(): Client
     {
         return new Client(['base_uri' => $this->config[Klarna::OPTION_GATEWAY_URL]]);
+    }
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    protected function makeRequest(string $uri, DataTransferObject $dto): ResponseInterface
+    {
+        return $this->getClient()->request(
+            RequestMethodInterface::METHOD_POST,
+            $uri,
+            [
+                'auth' => [
+                    $this->config[Klarna::OPTION_USERNAME],
+                    $this->config[Klarna::OPTION_PASSWORD],
+                ],
+                'json' => $dto->toArray()
+            ]
+        );
     }
 }

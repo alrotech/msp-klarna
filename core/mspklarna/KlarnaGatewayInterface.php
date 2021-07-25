@@ -23,6 +23,11 @@ interface KlarnaGatewayInterface
     public const OPTION_GATEWAY_URL_TEST = 'gateway_url_test';
     public const OPTION_DEVELOPER_MODE = 'developer_mode';
 
+    public const AREA_MERCHANT = 'merchant';
+    public const OPTION_PURCHASE_LOCALE = 'locale';
+    public const OPTION_PURCHASE_COUNTRY = 'purchase_country';
+    public const OPTION_PURCHASE_CURRENCY = 'purchase_currency';
+
     public const AREA_STATUSES = 'statuses';
     public const OPTION_SUCCESS_STATUS = 'success_status';
     public const OPTION_FAILURE_STATUS = 'failure_status';

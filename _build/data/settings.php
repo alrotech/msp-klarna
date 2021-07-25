@@ -25,6 +25,11 @@ $list = [
         Klarna::OPTION_GATEWAY_URL_TEST => ['xtype' => 'textfield', 'value' => 'https://api<region>.playground.klarna.com'],
         Klarna::OPTION_DEVELOPER_MODE => ['xtype' => 'combo-boolean', 'value' => true],
     ],
+    Klarna::AREA_MERCHANT => [
+        Klarna::OPTION_PURCHASE_LOCALE => ['xtype' => 'textfield', 'value' => 'en-GB'],
+        Klarna::OPTION_PURCHASE_COUNTRY => ['xtype' => 'textfield', 'value' => 'DE'],
+        Klarna::OPTION_PURCHASE_CURRENCY => ['xtype' => 'textfield', 'value' => 'EUR'],
+    ],
     Klarna::AREA_STATUSES => [
         Klarna::OPTION_SUCCESS_STATUS => ['xtype' => 'mspp-combo-status', 'value' => 2],
         Klarna::OPTION_FAILURE_STATUS => ['xtype' => 'mspp-combo-status', 'value' => 4],

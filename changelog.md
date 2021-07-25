@@ -1,3 +1,13 @@
+# [0.4.0](https://github.com/alroniks/mspKlarna/compare/v0.3.0...v0.4.0) (2021-07-25)
+
+
+### Features
+
+* connector for interacting with backend from front app side ([968e760](https://github.com/alroniks/mspKlarna/commit/968e76083ad37b259e3bccdf8d1fedb14f193216))
+* service now can get payment session and retrieve hosted payment page ([ddc46a2](https://github.com/alroniks/mspKlarna/commit/ddc46a29b010f0ca3ed53ecd2c47ced06360770b))
+
+
+
 # [0.3.0](https://github.com/alroniks/mspKlarna/compare/v0.2.0...v0.3.0) (2021-07-23)
 
 

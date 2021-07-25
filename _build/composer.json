@@ -2,7 +2,7 @@
   "name": "alroniks/mspklarna",
   "description": "Payment provider for MODX miniShop2 e-commerce solutions based on Klarna gateway.",
   "type": "metapackage",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "proprietary",
   "authors": [
     {

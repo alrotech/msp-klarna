@@ -9,63 +9,82 @@ declare(strict_types = 1);
 
 namespace alroniks\mspklarna\dto;
 
+use alroniks\mspklarna\dto\order\OrderLine;
+use alroniks\mspklarna\KlarnaGatewayInterface as Klarna;
+use Brick\Money\Currency;
+use Brick\Money\Money;
 use msOrder;
+use msOrderProduct;
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Session extends FlexibleDataTransferObject
+final class Session extends FlexibleDataTransferObject
 {
     # required fields
     public string $locale;
     public string $purchase_country;
     public string $purchase_currency;
+
     public int $order_amount;
     public int $order_tax_amount;
-
-    # optional fields
-    public ?string $acquiring_channel;
-
-    //attachment
-
-    public ?string $authorization_token;
 
     # extended fields
     public ?Address $billing_address;
     public ?Address $shipping_address;
 
-    public ?string $client_token;
+    public ?Customer $customer;
 
-    //custom_payment_method_ids
+    /** @var string|int|null  */
+    public $merchant_reference1;
 
-//    public $customer;
+    /** @var string|int|null */
+    public $merchant_reference2;
 
-    public ?string $design;
+    /** @var \alroniks\mspklarna\dto\order\OrderLine[] */
+    public array $order_lines;
 
-
-
-    //merchant_data
-
-    //merchant_reference1
-    //merchant_reference2
-
-
-//    /** @var \alroniks\mspklarna\dto\OrderLines[] $order_lines */
-//    public array $order_lines;
-
-    public function withCountry(string $country): self
+    public function withBillingAddress(Address $address): self
     {
-        $this->purchase_country = $country;
+        $this->shipping_address = $address;
 
         return $this;
     }
 
-    public static function createFromOrder(msOrder $order, array $config = []): self
+    public function withShippingAddress(Address $address): self
     {
-        // address
-        // customer
+        $this->shipping_address = $address;
 
-        return new static(array_merge($config, [
-            'order_amount' => $order->get('cost'), // *100 как в bepaid
+        return $this;
+    }
+
+    public function withCustomer(Customer $customer): self
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * @throws \Brick\Money\Exception\UnknownCurrencyException
+     */
+    public static function createFromOrder(msOrder $order, array $config = [], $withAddress = true, $withCustomer = true): self
+    {
+        $currency = Currency::of($config[Klarna::OPTION_PURCHASE_CURRENCY]);
+
+        $session = new self(array_merge($config, [
+            'order_amount' => Money::of($order->get('cost'), $currency)
+                ->getMinorAmount()->abs()->toInt(),
             'order_tax_amount' => 0,
+            'merchant_reference1' => $order->get('id'),
+            'merchant_reference2' => $order->get('num'),
+            'order_lines' => array_values(array_map(static function(msOrderProduct $product) use($currency) {
+
+                $product->set('cost', Money::of($product->get('cost'), $currency)->getMinorAmount()->abs()->toInt());
+                $product->set('price', Money::of($product->get('price'), $currency)->getMinorAmount()->abs()->toInt());
+
+                return OrderLine::createFromProduct($product);
+            }, $order->getMany('Products')))
         ]));
+
+        return $session;
     }
 }

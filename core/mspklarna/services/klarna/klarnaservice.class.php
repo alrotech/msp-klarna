@@ -42,30 +42,15 @@ class KlarnaService
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Brick\Money\Exception\UnknownCurrencyException
      */
     public function getHostedPaymentPage(msOrder $order): string
     {
         $this->setUpConfig($order);
 
-        print_r($order->toArray());
-
-        // MerchantSession
-
-//                    'order_lines' => [
-//        [
-//            'name' => 'Некий товар',
-//            'quantity' => 2,
-//            'total_amount' => 1000,
-//            'unit_price' => 500,
-//        ]
-//    ]
-
-        $session = Session::createFromOrder($order, $this->config);
-
-        // debug, avoid one value var
-        print_r($session);
-
-        $paymentSession = $this->createPaymentSession($session);
+        $paymentSession = $this->createPaymentSession(
+            Session::createFromOrder($order, $this->config)
+        );
 
         print_r($paymentSession);
 

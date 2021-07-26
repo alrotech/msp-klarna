@@ -20,9 +20,11 @@ $extensions = [
     'simplexml' => 'SimpleXML',
     'json' => 'JavaScript Object Notation',
     'xmlwriter' => 'XMLWriter',
-    'bcmath' => 'BCMath Arbitrary Precision Mathematics',
+    'bcmath' => 'BCMath Arbitrary Precision Mathematics', // or gmp?
     'openssl' => 'OpenSSL'
 ];
+
+// todo: provide info that gmp also can be used as an alternate
 
 foreach ($extensions as $ext => $title) {
     if (!extension_loaded($ext)) {
@@ -38,6 +40,5 @@ foreach ($extensions as $ext => $title) {
         return false;
     }
 }
-
 
 return true;

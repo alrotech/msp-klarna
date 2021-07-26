@@ -7,8 +7,10 @@
 
 declare(strict_types = 1);
 
-use alroniks\mspklarna\dto\merchant\MerchantSession;
-use alroniks\mspklarna\dto\Session;
+use alroniks\mspklarna\dto\MerchantResponse;
+use alroniks\mspklarna\dto\PageResponse;
+use alroniks\mspklarna\dto\PageSession;
+use alroniks\mspklarna\dto\MerchantSession;
 use alroniks\mspklarna\KlarnaGatewayInterface as Klarna;
 use Fig\Http\Message\RequestMethodInterface;
 use GuzzleHttp\Client;
@@ -43,76 +45,48 @@ class KlarnaService
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Brick\Money\Exception\UnknownCurrencyException
+     * @throws \League\Uri\Contracts\UriException
      */
     public function getHostedPaymentPage(msOrder $order): string
     {
         $this->setUpConfig($order);
 
-        $paymentSession = $this->createPaymentSession(
-            Session::createFromOrder($order, $this->config)
+        // getting payment session
+        $merchantResponse = $this->createMerchantSession(
+            MerchantSession::createFromOrder($order, $this->config)
         );
 
-        print_r($paymentSession);
+        // configuring hosted payment page
+        $pageSession = new PageSession([
+            'payment_session_url' => (string)Uri::createFromBaseUri(
+                (new UriTemplate('/payments/v1/sessions/{sid}'))
+                    ->expand(['sid' => $merchantResponse->session_id]),
+                $this->config[Klarna::OPTION_GATEWAY_URL]
+            )
+        ]);
 
-        die();
-
-        $answ = $this->createHostedPageSession($paymentSession);
-
-
-
-        //        $arr = $this->modx->fromJSON($res);
-//
-//        echo $arr['session_id'];
-//
-//        $answ = $service->requestRedirect($arr['session_id']);
-//        $aw = $answ->getBody()->getContents();
-//
-//        print_r($aw);
-
-    }
-
-    // SessionRequest//
-    protected function createHostedPageSession(MerchantSession $session)
-    {
-        $response = $this->makeRequest('/hpp/v1/sessions', $session);
-
-        $uri = Uri::createFromBaseUri(
-            (new UriTemplate('/payments/v1/sessions/{kp_session_id}'))->expand(['kp_session_id' => $session]),
-            $this->config[Klarna::OPTION_GATEWAY_URL]
-        );
-
-        echo $uri;
-
-        return $this->getClient()->request(
-            RequestMethodInterface::METHOD_POST,
-            '/hpp/v1/sessions',
-            [
-                'auth' => [
-                    $this->config[Klarna::OPTION_USERNAME],
-                    $this->config[Klarna::OPTION_PASSWORD],
-                ],
-                'json' => [
-                    'payment_session_url' => (string)$uri,
-//                    'merchant_urls' => [
-//                        'success' => '',
-//                        'cancel' => '',
-//                        'back' => '',
-//                        'failure' => '',
-//                        'error' => ''
-//                    ]
-                ]
-            ]
-        );
+        // getting hosted page
+        return $this->createHostedPageSession($pageSession)->redirect_url;
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function createPaymentSession(Session $session): MerchantSession
+    protected function createHostedPageSession(PageSession $session): PageResponse
+    {
+        $response = $this->makeRequest('/hpp/v1/sessions', $session);
+
+        return new PageResponse($this->modx->fromJSON($response->getBody()->getContents()));
+    }
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    protected function createMerchantSession(MerchantSession $session): MerchantResponse
     {
         $response = $this->makeRequest('/payments/v1/sessions', $session);
 
-        return new MerchantSession($this->modx->fromJSON($response->getBody()->getContents()));
+        return new MerchantResponse($this->modx->fromJSON($response->getBody()->getContents()));
     }
 
     protected function setUpConfig(msOrder $order): void

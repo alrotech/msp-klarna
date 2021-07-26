@@ -35,6 +35,11 @@ class KlarnaHandler extends ConfigurablePaymentHandler implements KlarnaGatewayI
         return $this->success('', ['redirect' => $link]);
     }
 
+    /**
+     * @throws \Brick\Money\Exception\UnknownCurrencyException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \League\Uri\Contracts\UriException
+     */
     public function getPaymentLink(msOrder $order): string
     {
         /** @var KlarnaService $service */

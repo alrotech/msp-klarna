@@ -19,7 +19,7 @@ use msOrder;
 use msOrderProduct;
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-final class Session extends FlexibleDataTransferObject
+final class MerchantSession extends FlexibleDataTransferObject
 {
     # required fields
     public string $locale;
@@ -72,7 +72,7 @@ final class Session extends FlexibleDataTransferObject
     {
         $currency = Currency::of($config[Klarna::OPTION_PURCHASE_CURRENCY]);
 
-        $session = new self(array_merge($config, [
+        return new self(array_merge($config, [
             'order_amount' => Money::of($order->get('cost'), $currency)
                 ->getMinorAmount()->abs()->toInt(),
             'order_tax_amount' => 0,
@@ -86,7 +86,5 @@ final class Session extends FlexibleDataTransferObject
                 return OrderLine::createFromProduct($product);
             }, $order->getMany('Products')))
         ]));
-
-        return $session;
     }
 }

@@ -7,11 +7,11 @@
 
 declare(strict_types = 1);
 
-namespace alroniks\mspklarna\dto\merchant;
+namespace alroniks\mspklarna\dto;
 
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class MerchantSession extends FlexibleDataTransferObject
+class MerchantResponse extends FlexibleDataTransferObject
 {
     public string $client_token;
     public string $session_id;

@@ -11,11 +11,8 @@ namespace alroniks\mspklarna\dto\merchant;
 
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class MerchantSession extends FlexibleDataTransferObject
+class AssetUrls extends FlexibleDataTransferObject
 {
-    public string $client_token;
-    public string $session_id;
-
-    /** @var \alroniks\mspklarna\dto\merchant\PaymentMethodCategory[]|null  */
-    public ?array $payment_method_categories;
+    public ?string $descriptive;
+    public ?string $standard;
 }

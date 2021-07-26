@@ -1,3 +1,14 @@
+# [0.5.0](https://github.com/alroniks/mspKlarna/compare/v0.4.0...v0.5.0) (2021-07-26)
+
+
+### Features
+
+* full implementation DTOs for Merchant session response ([bbe8970](https://github.com/alroniks/mspKlarna/commit/bbe8970f9ce51b27ed6066cb0448217090bd5ba1))
+* make possible to redirect to payment page after order submit ([e41c467](https://github.com/alroniks/mspKlarna/commit/e41c467a44082f36b469c47194fb1143672e7f73))
+* Session DTO implementation and getting merchant session ([382b5d8](https://github.com/alroniks/mspKlarna/commit/382b5d8a4f2605bbd00aabff21f51c3a7db4a367))
+
+
+
 # [0.4.0](https://github.com/alroniks/mspKlarna/compare/v0.3.0...v0.4.0) (2021-07-25)
 
 

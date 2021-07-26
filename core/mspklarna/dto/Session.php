@@ -9,6 +9,8 @@ declare(strict_types = 1);
 
 namespace alroniks\mspklarna\dto;
 
+use alroniks\mspklarna\dto\order\Address;
+use alroniks\mspklarna\dto\order\Customer;
 use alroniks\mspklarna\dto\order\OrderLine;
 use alroniks\mspklarna\KlarnaGatewayInterface as Klarna;
 use Brick\Money\Currency;

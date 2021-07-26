@@ -7,7 +7,7 @@
 
 declare(strict_types = 1);
 
-namespace alroniks\mspklarna\dto;
+namespace alroniks\mspklarna\dto\order;
 
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 

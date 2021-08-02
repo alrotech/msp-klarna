@@ -25,3 +25,14 @@ $modx->request->handleRequest(
         'location' => '',
     ]
 );
+
+// https://s.ru/assets/mspklarna/connector.php?ctx=web&action=web/status_update&hppSessionId={{session_id}}&secretTocken=otkfddfhdfg
+
+
+//https://docs.klarna.com/hosted-payment-page/api-documentation/status-callbacks/
+
+//{
+//    "merchant_urls": {
+//    "status_update": "https://example.com/statsCallbackEndpoint?hppSessionId={{session_id}}&secretToken=7d1cbc3b-b30c-4be2-a8c4-dc76482d7bf6"
+//    }
+//}

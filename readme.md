@@ -1,13 +1,3 @@
-# mspKlarna – платежный модуль для miniShop2.
+<h3>mspKlarna &mdash; payment module for miniShop2</h3>
 
-## Support
-
-Техническая поддержка осуществляется через личный кабинет маркетплейса [modstore.pro](https://modstore.pro/) и в соответствии с [правилами маркетплейса](https://modstore.pro/info/rules). При покупке пакета предоставляется 1 (один) год бесплатной технической поддержки. По истечении этого срока, в случае необходимости в технической поддержке, вы можете оплатить стоимость пакета, что даст вам очередной год технической поддержки с момента оплаты.
-
-## Authorship and License
-
-Код модуля распространяется по лицензии MIT, тем не менее распространение и продажа готового модуля, в виде собранного пакета для системы управления MODX, запрещается. При использовании частей кода, сохранение лицензии и указание авторства обязательны.
-
-Автор исходного кода модуля и владелец прав на распространение:
-
-- Иван Климчук | [GitHub](https://github.com/alroniks) | [Twitter](https://twitter.com/iklimchuk) | [ivan@klimchuk.com](mailto:ivan@klimchuk.com) | [klimchuk.by](https://klimchuk.by/) | [alroniks.com](https://alroniks.com)
+This module allows you to easily configure the integration of an online store created on miniShop2 with <a href="https://www.klarna.com/international/">payment system Klarna</a>. For normal operation, the add-on <a href="https://modstore.pro/packages/utilities/mspaymentprops">msPaymentProps</a> is required. Detailed information about the module is available at <a href="https://modstore.pro/office/packages/mspklarna">marketplace website</a>.

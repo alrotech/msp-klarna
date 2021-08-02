@@ -6,5 +6,3 @@
 
 #### Installation, configuration and use
 
-#### Technical support
-

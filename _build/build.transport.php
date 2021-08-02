@@ -196,8 +196,8 @@ $package->put(
 );
 
 $package->setAttribute('changelog', file_get_contents(__DIR__ . '/../changelog.md'));
-$package->setAttribute('license', file_get_contents(__DIR__ . '/../LICENSE'));
-$package->setAttribute('readme', file_get_contents(__DIR__ . '/../readme.md'));
+$package->setAttribute('license', file_get_contents(__DIR__ . '/../license'));
+$package->setAttribute('readme', file_get_contents(__DIR__ . '/../docs/about.md'));
 $package->setAttribute(
     'requires',
     [

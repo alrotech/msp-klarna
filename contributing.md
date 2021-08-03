@@ -4,6 +4,8 @@ This module allows you to easily configure the integration of an online store cr
 
 // here is should be technical documentation about contributing etc. not about client
 
+## conventions
+
 - about and status
     - marketplace link
 

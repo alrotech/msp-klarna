@@ -1,7 +1,6 @@
 .idea
 .D_Store
 .encryption
-localazy.json
 
 _packages/*/
 _packages/*.zip

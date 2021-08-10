@@ -22,9 +22,9 @@
 
 Установка модуля осуществляется через административную часть вашего сайта на MODX. Для установки модуля необходимо перейти в раздел <em>Пакеты</em> и далее в <em>Установщик</em> главного меню, [подключить репозиторий modstore.pro][connection], выбрать из списка пакетов `mspKlarna` и следовать дальнейшим инструкциям установщика.
 
-Модуль для работы требует: PHP 7.4+, MODX 2.8+, установленный вспомогательный компонент **[msPaymentProps]**, а так же некоторые PHP Extensions. Описание процесса установки и настройки компонента, справка по всем доступным параметрам конфигурации, и исчерпывающий список зависимостей доступны в [подробной документации][documentation].
+Модуль для работы требует: PHP 7.4+, MODX 2.8+, установленный вспомогательный компонент **[msPaymentProps][]**, а так же некоторые PHP Extensions. Описание процесса установки и настройки компонента, справка по всем доступным параметрам конфигурации, и исчерпывающий список зависимостей доступны в [подробной документации][documentation].
 
-Быстро проверить работу модуля можно используя компонент [Console] (или [modalConsole]). Откройте окно компонента **`Console`** и выполните приведенный ниже код.
+Быстро проверить работу модуля можно используя компонент [Console][] (или [modalConsole][]). Откройте окно компонента **`Console`** и выполните приведенный ниже код.
 
 ```php
 require_once MODX_CORE_PATH . 'components/mspklarna/KlarnaHandler.class.php';
@@ -51,9 +51,9 @@ if ($order = $modx->getObject(msOrder::class, 1)) { // 1 – id заказа
 [klarna.com]: https://www.klarna.com/
 [community]: https://modx.pro
 
-[mspaymentprops]: https://modstore.pro/packages/utilities/mspaymentprops
-[modalconsole]: https://modstore.pro/packages/utilities/modalconsole
-[console]: https://modx.com/extras/package/console
+[msPaymentProps]: https://modstore.pro/packages/utilities/mspaymentprops
+[modalConsole]: https://modstore.pro/packages/utilities/modalconsole
+[Console]: https://modx.com/extras/package/console
 
 [documentation]: https://mspay.github.io/msp-klarna/ru/documentation
 [changelog]: https://modstore.pro/packages/payment-system/mspklarna#tab/changelog

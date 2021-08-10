@@ -24,7 +24,7 @@
 
 Быстро проверить работу модуля можно используя компонент [Console] (или [modalConsole]). Откройте окно компонента **`Console`** и выполните приведенный ниже код.
 
-```
+```php
 require_once MODX_CORE_PATH . 'components/mspklarna/KlarnaHandler.class.php';
 
 if ($order = $modx->getObject(msOrder::class, 1)) { // 1 – id заказа

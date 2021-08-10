@@ -12,7 +12,7 @@ Module is [selling] on the marketplace, when [documentation] stored on the GitHu
 
 If you want to contribute please read the [Contributing] guidelines. For helping with translations to another languages, please use special project [msp-klarna][translating] in Crowdin.
 
-### Seeking Assistance
+### Support
 
 For paid modules we provide professional support via marketplace. Please, read the rules and use marketplace platform to create a ticket, if you have an issue. More in our [Support] policy.
 

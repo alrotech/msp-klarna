@@ -1,42 +1,32 @@
-# mspKlarna &mdash; payment module for miniShop2 [![Crowdin](https://badges.crowdin.net/msp-klarna/localized.svg)](https://crowdin.com/project/msp-klarna)
+# mspKlarna &mdash; payment module for miniShop2
 
-This MODX extra allows easy integrate payment system provider Klarna into MODX and miniShop2. The latest one is the faimouse e-commerce solution and engine. Module provides easy way to tune minishop2 to make possible accept payment from customers using payment gateway.  
+This MODX extra allows easy integrate payment system provider Klarna into MODX and miniShop2. The latest one is the popular e-commerce engine for MODX, which provides a huge ecosystem solutions for internet selling. Module provides easy way to tune miniShop2 to make possible accept payment from customers using payment gateway Klarna.
 
-### Usage
+Module is [selling] on the marketplace, when [documentation] stored on the GitHub Pages, which means, that you will get updates together with the code. Also, please read about how we manage releases and versions in the [Security] policy.
 
-Module was created with a goal to provide the easiest way to integrate  
-- docs
+## Contributing
 
-- поддержка - support
-- безопасность - security
+If you want to contribute please read the [Contributing] guidelines. For helping with translations to another languages, please use special project [msp-klarna][translating] in Crowdin.
 
+## Seeking Assistance
 
+For paid modules we provide professional support via marketplace. Please, read the rules and use marketplace platform to create a ticket, if you have an issue. More in our [Support] policy.
 
-- разработка - contribution
+## Licence
 
-Contributing
-
-- 
-
-Seeking Assistance
-
-If you find any problems or would like to suggest a feature, please feel free to file an issue on Github at Issues Page.
-
-Need help working with Crowdin GitHub Action or have any questions? Contact Customer Success Service.
-
-Donate
-
-The best way to donate to buy license of the component via marketplace. It also will allow you get the professiona support during one year after purchasing. But, you still can tips me buing me coffee or just sending some rubles for candies.
-
-Use donate button on the top of repository or on right side. Or just use the same links below.
-
-Licence
-
-The Crowdin GitHub Action is licensed under the MIT License.
+```
+The module code is licensed under the MIT License.
 See the LICENSE file distributed with this work for additional
 information regarding copyright ownership.
 
-Except as contained in the LICENSE file, the name(s) of the above copyright
-holders shall not be used in advertising or otherwise to promote the sale,
-use or other dealings in this Software without prior written authorization.
+Withal, the license does not cover the assets, like built 
+packages and other derivatives. Spreading such assets is prohibitted 
+without prior written authorization.
+```
 
+[documentation]: https://mspay.github.io/msp-klarna/
+[contributing]: https://github.com/mspay/.github/blob/main/CONTRIBUTING.md
+[translating]: https://crowdin.com/project/msp-klarna
+[security]: https://github.com/mspay/.github/blob/main/SECURITY.md
+[selling]: https://en.modstore.pro/packages/payment-system/mspklarna
+[support]: https://github.com/mspay/.github/blob/main/SUPPORT.md

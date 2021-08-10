@@ -14,7 +14,7 @@
 
 #### Новости и обновления
 
-Значимые обновления будут публиковаться на сайте сообщества [modx.pro] в виде анонсов, подробные же изменения всегда можно найти в [списке изменений][changelog].
+Значимые обновления будут публиковаться на [сайте сообщества][community] в виде анонсов, подробные же изменения всегда можно найти в [списке изменений][changelog].
 
 — [mspKlarna — новый платежный модуль для miniShop2](#)
 
@@ -49,7 +49,7 @@ if ($order = $modx->getObject(msOrder::class, 1)) { // 1 – id заказа
 [Telegram](https://t.me/orlaskin) | [GitHub](https://github.com/alroniks) | [Twitter](https://twitter.com/iklimchuk) | [ivan@klimchuk.com](mailto:ivan@klimchuk.com) | [klimchuk.by](https://klimchuk.by/) | [alroniks.com](https://alroniks.com)
 
 [klarna.com]: https://www.klarna.com/
-[modx.pro]: https://modx.pro
+[community]: https://modx.pro
 
 [mspaymentprops]: https://modstore.pro/packages/utilities/mspaymentprops
 [modalconsole]: https://modstore.pro/packages/utilities/modalconsole

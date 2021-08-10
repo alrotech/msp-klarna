@@ -42,8 +42,9 @@ if ($order = $modx->getObject(msOrder::class, 1)) { // 1 – id заказа
 
 Код модуля распространяется по лицензии MIT, тем не менее распространение и продажа готового модуля, в виде собранного пакета для системы управления MODX, запрещается. При использовании частей кода, сохранение лицензии и указание авторства обязательны.
 
-Автор исходного кода модуля и владелец прав на распространение: Иван Климчук.
-[GitHub](https://github.com/alroniks) | [Twitter](https://twitter.com/iklimchuk) | [ivan@klimchuk.com](mailto:ivan@klimchuk.com) | [klimchuk.by](https://klimchuk.by/) | [alroniks.com](https://alroniks.com)
+Автор исходного кода модуля и владелец прав на распространение: [Иван Климчук](https://modstore.pro/authors/alroniks).
+
+[Telegram](https://t.me/orlaskin) | [GitHub](https://github.com/alroniks) | [Twitter](https://twitter.com/iklimchuk) | [ivan@klimchuk.com](mailto:ivan@klimchuk.com) | [klimchuk.by](https://klimchuk.by/) | [alroniks.com](https://alroniks.com)
 
 [klarna.com]: https://www.klarna.com/
 [modx.pro]: https://modx.pro
